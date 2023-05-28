@@ -71,7 +71,7 @@ function capturarSegundaSeccion(url){
 
 function capturarTerceraSeccion(url){
     let numero = tercerG.next().value || tercerUltimoNumero + 1;
-    if (numero > 11 && numero <= 17) {
+    if (numero > 11 && numero <= 16) {
         tercerUltimoNumero = numero;
         url = "https://swapi.dev/api/people/" + numero;
 
