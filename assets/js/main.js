@@ -37,22 +37,23 @@ function* tercerContador(){
 let tercerG = tercerContador()
 
 
-function capturarPrimeraSeccion(){
+const capturarPrimeraSeccion = () => {
     let numero = primerG.next().value || primerUltimoNumero + 1
-    
-    if(numero <= 5){
-        primerUltimoNumero = numero;
-        url = "https://swapi.dev/api/people/" + numero   
-
-        fetch(url)
-            .then(response => response.json())
-            .then((data) =>{
-            mostrarPrimerCuadro(data)       
-
-            })        
-}
-
-}
+    return new Promise(async (resolve, reject) => {
+        if (numero <= 5){
+            try {
+            primerUltimoNumero = numero;
+            let url = "https://swapi.dev/api/people/" + numero;
+            let response = await fetch(url);
+            let data = await response.json();
+            resolve(data);
+            mostrarPrimerCuadro(data) 
+        } catch (error) {
+            reject(error);
+            }
+        }
+    });
+};
 
 function capturarSegundaSeccion(url){
     let numero = segundoG.next().value || segundoUltimoNumero + 1;
